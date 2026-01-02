@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamed Arafath A — Portfolio</title>
+
+    <!-- bootstrap css cdn link  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- bootstrap icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css"
+    />
+
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- jQuery (still used for some simple DOM helpers) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<style>
+/* ---------------- GLOBAL ---------------- */
+:root{
+  --primary: #F4C430;      /* Golden Yellow */
+  --accent: #E0A800;       /* Dark Gold / Amber */
+  --dark: #2C3E50;         /* Charcoal */
+  --bg: #FDF9F0;           /* Very light cream */
+  --card: #FFFFFF;          /* Card white */
+}
+
+*{box-sizing: border-box;}
+body{
+  font-family: 'Josefin Sans', sans-serif;
+  color: var(--dark);
+  background-color: var(--bg);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+  padding:0;
+}
+
+a{text-decoration:none;}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar{
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(6px);
+  transition: all .35s ease;
+  border-bottom: 1px solid rgba(44,62,80,0.08);
+}
+.navbar.scrolled{
+  box-shadow: 0 8px 30px rgba(44,62,80,0.08);
+  background: #fff;
+}
+.navbar-brand{
+  color: var(--primary);
+  font-weight:700;
+  font-size:1.6rem;
+}
+.nav-link{
+  color: var(--dark) !important;
+  font-weight: 500;
+  transition: transform .25s ease, color .25s ease;
+}
+.nav-link:hover{
+  color: var(--accent) !important;
+  transform: translateY(-3px);
+}
+.nav-menu { background: transparent; border: none; font-size: 1.2rem; color: var(--dark); }
+
+/* ---------------- BUTTONS ---------------- */
+.c-btn{
+  background: linear-gradient(90deg,var(--primary),var(--accent));
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 12px 28px;
+  box-shadow: 0 8px 20px rgba(244,196,48,0.12);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.c-btn:hover{
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(224,168,0,0.18);
+}
+
+/* ---------------- HOME ---------------- */
+.home{
+  padding: 4.5rem 1rem;
+}
+.home h2{
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.05;
+}
+.c-orange{ color: var(--primary); }
+.home p{
+  color: #7A6B40; /* subtle warm gray */
+  max-width: 54ch;
+}
+.h-btn{ padding: .95rem 1.6rem; border-radius: 999px; }
+.home .img-wrap img{
+  max-width: 420px;
+  filter: drop-shadow(0 18px 40px rgba(44,62,80,0.08));
+  border-radius: 12px;
+  transition: transform .8s ease;
+}
+.home .img-wrap img:hover{
+  transform: translateY(-8px) rotate(-1deg) scale(1.02);
+}
+
+/* ---------------- EXPERTISE / SERVICES ---------------- */
+.heading small{ color: var(--primary); font-weight:700; letter-spacing: .6px; }
+.heading h3{ font-weight:700; color: var(--dark); margin-top: .4rem; }
+.service-card{
+  background: var(--card);
+  border-radius: 16px;
+  padding: 28px;
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  border: 1px solid rgba(44,62,80,0.04);
+}
+.service-card:hover{
+  transform: translateY(-12px);
+  box-shadow: 0 18px 50px rgba(244,196,48,0.12);
+  border-color: rgba(244,196,48,0.12);
+}
+.service-card .img img{ width: 56px; opacity: .95; }
+
+/* ---------------- SKILLS ---------------- */
+.skill{ padding: 3.5rem 1rem; }
+.progress-card{ text-align:center; }
+.circular-progress{
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+  background: conic-gradient(var(--primary) 0deg, #eee 0deg);
+  transition: background .45s ease;
+}
+.circular-progress::after{
+  content: "";
+  position:absolute;
+  inset: 12px;
+  background: var(--card);
+  border-radius: 50%;
+}
+.progress-value{
+  position: absolute;
+  inset: 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color: var(--dark);
+  z-index:2;
+}
+
+/* ---------------- PORTFOLIO ---------------- */
+#myBtnContainer{ display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap; }
+#myBtnContainer .filter-item{
+  background: transparent;
+  border: 1px solid rgba(44,62,80,0.08);
+  padding: .5rem .8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all .25s ease;
+  font-weight:600;
+}
+#myBtnContainer .filter-item.active{
+  background: linear-gradient(90deg,var(--primary),var(--accent));
+  color:#fff;
+  border-color: transparent;
+  transform: translateY(-4px);
+}
+
+.card{
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+  border: none;
+}
+.card:hover{
+  transform: translateY(-12px);
+  box-shadow: 0 18px 50px rgba(44,62,80,0.08);
+}
+.card img{ transition: transform .6s ease; }
+.card:hover img{ transform: scale(1.06); }
+
+.badge{
+  background: rgba(244,196,48,0.12) !important;
+  color: var(--primary) !important;
+  font-weight:600;
+  margin-right:.35rem;
+  border-radius: 10px;
+  padding: .35rem .6rem;
+}
+
+/* ---------------- BLOG ---------------- */
+.blog .card{ border-radius: 14px; }
+
+/* ---------------- CONTACT ---------------- */
+/* ---------- CREATIVE CONTACT ---------- */
+.contact-wrap {
+  background: linear-gradient(135deg, #fff7d6, #fff);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(44,62,80,0.08);
+}
+
+.contact-card {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 18px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 40px rgba(244,196,48,0.18);
+}
+
+.contact-card i {
+  font-size: 1.6rem;
+  color: var(--primary);
+  background: rgba(244,196,48,0.15);
+  padding: 14px;
+  border-radius: 50%;
+}
+
+.contact-card h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.contact-card p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Floating input style */
+.floating-group {
+  position: relative;
+  margin-bottom: 1.4rem;
+}
+
+.floating-group input,
+.floating-group textarea {
+  width: 100%;
+  padding: 14px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(44,62,80,0.15);
+  outline: none;
+  font-size: 15px;
+}
+
+.floating-group label {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  transform: translateY(-50%);
+  background: #fff;
+  padding: 0 6px;
+  font-size: 14px;
+  color: #888;
+  pointer-events: none;
+  transition: .25s ease;
+}
+
+.floating-group input:focus + label,
+.floating-group textarea:focus + label,
+.floating-group input:not(:placeholder-shown) + label,
+.floating-group textarea:not(:placeholder-shown) + label {
+  top: -6px;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.floating-group input:focus,
+.floating-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 6px rgba(224,168,0,0.25);
+}
+
+
+/* ---------------- BACK TO TOP ---------------- */
+#btn-back-to-top{
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  width: 52px;
+  height: 52px;
+  display: none;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 12px 34px rgba(244,196,48,0.16);
+  z-index: 999;
+  border: none;
+}
+
+/* ---------------- FOOTER ---------------- */
+footer{
+  background: var(--dark);
+  color: #fff;
+  padding: 2.5rem 1rem;
+  margin-top: 3rem;
+}
+footer a{
+  color: #fff;
+  transition: color .25s ease, transform .25s ease;
+}
+footer a:hover{ 
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+.social-links button{
+  border:none;
+  width:44px; height:44px; border-radius:50%;
+  display:inline-flex; align-items:center; justify-content:center;
+  margin:0 .35rem;
+  background: linear-gradient(90deg,var(--primary),var(--accent));
+  color:#fff;
+  transition: transform .25s ease;
+}
+.social-links button:hover{
+  transform: translateY(-6px) rotate(6deg);
+  box-shadow: 0 12px 30px rgba(244,196,48,0.12);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px){
+  .home h2{ font-size:1.6rem; }
+  .home .img-wrap img{ max-width: 320px; margin:auto; display:block; }
+  .container-fluid{ padding-left: 1rem; padding-right:1rem; }
+}
+
+/* ---------------- UTILITY ---------------- */
+.link{ color: var(--primary); font-weight:600; }
+.btn-c{ position:absolute; right:18px; top:18px; background:transparent; border:none; color:var(--dark); font-size:1.2rem; }
+</style>
+
+
+  </head>
+
+  <body>
+    <!-- navbar starts -->
+    <nav
+      id="navbar-top"
+      class="navbar navbar-expand-lg navbar-light sticky-top"
+    >
+      <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#home">Portfolio</a>
+        <button
+          class="nav-menu d-md-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="bi bi-list"></i>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav gap-3" style="font-size: 1.05rem">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#blog">Blog</a>
+            </li>
+          </ul>
+        </div>
+        <a class="d-none d-md-inline-block ms-3" href="#contact">
+          <button class="c-btn ms-4 py-2 px-4 rounded-pill">Contact</button>
+        </a>
+      </div>
+    </nav>
+    <!-- navbar ends here -->
+
+    <!-- home section starts  -->
+    <section class="home" id="home">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-between">
+          <div class="col-12 col-md-6 text-center text-md-start" data-aos="slide-right">
+            <h2>
+              Hello! I Am <br><br /><span class="c-orange">Mohamed Arafath A</span>
+            </h2>
+            <p class="text-muted mt-3"><br>
+              <b>I'm a Full Stack Developer and a UI/UX Designer with strong experience building fully responsive websites and backend systems.
+              I create fast, secure, and user-friendly web applications from start to finish.</b>
+            </p>
+            <div class="mt-4">
+              <a href="#contact" class="me-3"><button class="c-btn h-btn rounded-pill">Hire Me</button></a>
+              <a href="#portfolio" class="link ms-2">See My Work</a>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-5 img-wrap d-none d-md-block text-end" data-aos="zoom-in">
+            <img src="images/banner-01.webp" class="img-fluid" alt="Banner image - Mohamed Arafath" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- home section ends here -->
+
+    <!-- expertise section starts -->
+    <section class="expertise mt-5" id="service">
+      <div class="container-fluid">
+        <div class="heading text-center">
+          <small><h4><b>My Expertise</b></h4></small>
+          <h6>I’m a Computer Science student passionate about building full-stack web applications that are both functional and visually engaging. </h6><h6>I enjoy working across the stack—from crafting responsive user interfaces with HTML, CSS, JavaScript, and React, to developing robust backend systems using Node.js, Express, PHP, MySQL, and MongoDB.<br></h6>
+
+<h6>I’m also exploring LLM and prompt engineering, experimenting with AI-powered features to enhance user experience.</h6><h6>I believe in learning by doing, and most of my skills come from hands-on projects and problem-solving.</h6>
+
+Currently, I’m looking for a Full Stack Developer Internship where I can learn, collaborate, and contribute to meaningful digital products. </h6>
+        </div>
+
+        <div class="row justify-content-evenly mt-4 gy-4">
+          <div class="col-12 col-md-4" data-aos="fade-up">
+            <div class="service-card">
+              <div class="img">
+                <img src="images/service-icon1.png" alt="icon" />
+              </div>
+              <div class="content mt-3">
+                <h4>Web Design</h4>
+                <p class="text-muted">
+                  Clean UI, responsive layouts and pixel-perfect designs to make your brand stand out.
+                </p>
+                <a href="#portfolio" class="link">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4" data-aos="fade-up">
+            <div class="service-card">
+              <div class="img">
+                <img src="images/service-icon2.png" alt="icon" />
+              </div>
+              <div class="content mt-3">
+                <h4>Web Development</h4>
+                <p class="text-muted">
+                  Frontend to backend — building reliable, maintainable and scalable web applications.
+                </p>
+                <a href="#portfolio" class="link">Read More</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4" data-aos="fade-up">
+            <div class="service-card">
+              <div class="img">
+                <img src="images/service-icon3.png" alt="icon" />
+              </div>
+              <div class="content mt-3">
+                <h4>Debugging</h4>
+                <p class="text-muted">
+Improving website performance & resolving technical issues.
+Ensuring every project is stable, optimized ready for production.</p>
+                <a href="#contact" class="link">Get Support</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- expertise section ends here -->
+
+    <!-- skill section starts -->
+    <section class="skill mt-5 py-4" id="about">
+                  <div class="heading">
+              <small><center><h4><b>My Skills</b></h4></center></small>
+      <div class="container-fluid">
+        <div class="row gy-4 align-items-center">
+          <div class="col-12 col-md-5 text-center text-md-start" data-aos="slide-right">
+            <div class="row gx-3 gy-3">
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress html-css" data-value="92">
+                    <span class="progress-value html-progress">0%</span>
+                  </div>
+                  <br />
+                  <span class="text"><b>HTML & CSS</b></span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress javascript" data-value="84">
+                    <span class="progress-value javascript-progress">0%</span>
+                  </div>
+                  <br />
+                  <span class="text"><b>JavaScript</b></span>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress php" data-value="76">
+                    <span class="progress-value php-progress">0%</span>
+                  </div>
+                  <br />
+                  <span class="text"><b>PHP</b></span>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress reactjs" data-value="70">
+                    <span class="progress-value reactjs-progress">0%</span>
+                  </div>
+                  <br>
+                  <span class="text"><b>ReactJS</b></span>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress MongoDB" data-value="80">
+                    <span class="progress-value MongoDB-progress">0%</span>
+                  </div>
+                  <br>
+                  <span class="text"><b>MongoDB</b></span>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="progress-card">
+                  <div class="circular-progress MySQL" data-value="90">
+                    <span class="progress-value MySQL-progress">0%</span>
+                  </div>
+                  <br>
+                  <span class="text"><b>MySQL</b></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 ms-md-auto skill-detail" data-aos="slide-left">
+            <div class="heading">
+              <small><h4><b>My Skills</b></h4></small>
+              <h3>Beautiful & Unique Digital Experiences</h3>
+              <p class="text-muted">
+                I design and develop websites and web applications with a focus on performance, accessibility and maintainability.
+              </p>
+            </div>
+            <div class="mt-3">
+              <a href="./images/final Mohamed Arafath A Resume.pdf" download="final Mohamed Arafath A Resume.pdf" class="c-btn rounded-pill py-2 px-4">Download CV</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- skill section end here -->
+
+    <!-- portfolio section starts here -->
+    <section class="portfolio" id="portfolio">
+      <div class="container-fluid">
+        <div class="heading text-center pt-4">
+          <small><h4><b>Creative Work</b></h4></small>
+        </div>
+
+        <div class="portfolio-body mt-4">
+          <div class="row g-4">
+            <div class="post col-md-4 game all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/2048game.png" class="card-img-top" alt="2048 Game" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Diabetes Prediction</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML & CSS</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">Python</span>
+                    <span class="badge">ML</span>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 website all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/currency-converter.png" class="card-img-top" alt="Converter App" />
+                <div class="card-body text-center">
+                  <h4 class="card-title"> Object Detection System</h4>
+                  <div class="mb-2">
+                    <span class="badge">Python</span>
+                    <span class="badge">Open CV</span>
+                    <span class="badge">ML</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 webapp all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/dictionary.png" class="card-img-top" alt="Dictionary App" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Mobile Store (E-Commerce)</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML & CSS</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">PHP</span>
+                    <span class="badge">MySql</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 game all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/piceditor.png" class="card-img-top" alt="PicEditor" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Bus Pass Generator</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML</span>
+                    <span class="badge">CSS</span>                    
+                    <span class="badge">Bootstrap</span>
+                    <span class="badge">JavaScript</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 website all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/tictactoe.png" class="card-img-top" alt="TicTacToe Game" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Blood Bank</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML</span>
+                    <span class="badge">BOOTSTRAP</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">CSS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/lang-translator.png" class="card-img-top" alt="Language Translator" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Travel and Tourisim</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML</span>                    
+                    <span class="badge">CSS</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">Web App</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="post col-md-4 all" data-aos="fade-up">
+              <div class="card">
+                <img src="images/a.png" class="card-img-top" alt="a" />
+                <div class="card-body text-center">
+                  <h4 class="card-title">Anomalise Detection</h4>
+                  <div class="mb-2">
+                    <span class="badge">HTML</span>                    
+                    <span class="badge">CSS</span>
+                    <span class="badge">JavaScript</span>
+                    <span class="badge">Streamlit</span>
+                    <span class="badge">NumPy</span>
+                    <span class="badge">Python</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- portfolio section ends here -->
+
+    
+    <!-- contact section starts -->
+    <<section class="contact py-5" id="contact">
+  <div class="container">
+    <div class="heading text-center mb-5">
+      <small><h4><b>Get in Touch</b></h4></small>
+      <h3>Let’s Build Something Amazing</h3>
+    </div>
+
+    <div class="contact-wrap">
+      <div class="row gy-4">
+
+        <!-- CONTACT INFO -->
+        <div class="col-md-5">
+          <div class="contact-card mb-3">
+            <i class="bi bi-geo-alt-fill"></i>
+            <div>
+              <h6>Location</h6>
+              <p>Tamil Nadu, India</p>
+            </div>
+          </div>
+
+          <div class="contact-card mb-3">
+            <i class="bi bi-telephone-fill"></i>
+            <div>
+              <h6>Phone</h6>
+              <p>+91 6383856923</p>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <i class="bi bi-envelope-fill"></i>
+            <div>
+              <h6>Email</h6>
+              <p>arafath2005a@gmail.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="col-md-7">
+          <form action="https://formspree.io/f/mnjargqy" method="POST">
+            
+            <div class="floating-group">
+              <input type="text" name="name" required placeholder=" ">
+              <label>Your Name</label>
+            </div>
+
+            <div class="floating-group">
+              <input type="email" name="email" required placeholder=" ">
+              <label>Email Address</label>
+            </div>
+
+            <div class="floating-group">
+              <input type="text" name="mobile" placeholder=" ">
+              <label>Mobile Number</label>
+            </div>
+
+            <div class="floating-group">
+              <textarea name="message" rows="4" required placeholder=" "></textarea>
+              <label>Your Message</label>
+            </div>
+
+            <button type="submit" class="c-btn rounded-pill px-5">
+              Send Message 🚀
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- contact section ends here -->
+
+    <!-- back to top -->
+    <button type="button" id="btn-back-to-top" title="Back to top">
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- footer -->
+    <footer class="text-center">
+      <div class="container-fluid">
+        <h3 class="text-white pt-3" data-aos="fade-up">Portfolio</h3>
+        <div class="link-group mt-4" data-aos="fade-up">
+          <a href="#home">Home</a> <span class="mx-2">|</span>
+          <a href="#about">About</a> <span class="mx-2">|</span>
+          <a href="#portfolio">Portfolio</a> <span class="mx-2">|</span>
+          <a href="#blog">Blog</a> <span class="mx-2">|</span>
+          <a href="#contact">Contact</a>
+        </div>
+
+
+        <hr class="text-muted my-4" style="border-color: rgba(255,255,255,0.08);" />
+        <p style="opacity:.9;">Copyright 2025 Portfolio | All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <!-- BOOTSTRAP JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 900,
+        offset: 60,
+        once: true
+      });
+
+      // Navbar shadow on scroll
+      const nav = document.getElementById('navbar-top');
+      if (nav) {
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 30) nav.classList.add('scrolled');
+          else nav.classList.remove('scrolled');
+        });
+      }
+
+      // Back-to-top button
+      const backToTopBtn = document.getElementById("btn-back-to-top");
+      window.addEventListener('scroll', () => {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+          backToTopBtn.style.display = "flex";
+        } else {
+          backToTopBtn.style.display = "none";
+        }
+      });
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // Smooth scroll for internal links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            const topOffset = 70;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - topOffset;
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Portfolio filtering
+      const filterBtns = document.querySelectorAll('.filter-item');
+      const posts = document.querySelectorAll('.post');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filter = btn.getAttribute('data-filter');
+          posts.forEach(p => {
+            if (filter === 'all') {
+              p.style.display = 'block';
+            } else {
+              if (p.classList.contains(filter)) p.style.display = 'block';
+              else p.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // Circular skill progress animation
+      function animateCircularProgress() {
+        const circles = document.querySelectorAll('.circular-progress');
+        circles.forEach(circle => {
+          const value = +circle.getAttribute('data-value') || 0;
+          // Constrain value 0-100
+          const v = Math.max(0, Math.min(100, value));
+          const deg = (v / 100) * 360;
+          // set conic-gradient
+          circle.style.background = `conic-gradient(var(--primary) ${deg}deg, #eee ${deg}deg)`;
+          const label = circle.querySelector('.progress-value');
+          // animate number count
+          let start = 0;
+          const duration = 900;
+          const startTime = performance.now();
+          function step(now){
+            const elapsed = Math.min(duration, now - startTime);
+            const progress = elapsed / duration;
+            const current = Math.round(progress * v);
+            label.textContent = current + '%';
+            if (elapsed < duration) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      // Trigger skill animation when visible
+      function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.bottom >= 0;
+      }
+
+      let skillsAnimated = false;
+      function checkSkills() {
+        const skillSection = document.querySelector('.skill');
+        if (!skillsAnimated && isElementInViewport(skillSection)) {
+          animateCircularProgress();
+          skillsAnimated = true;
+        }
+      }
+      window.addEventListener('scroll', checkSkills);
+      window.addEventListener('load', () => {
+        checkSkills();
+        // ensure filtering layout correct on load
+        document.querySelector('.filter-item.active').click();
+      });
+
+      // Accessibility: allow Esc to close modals quickly
+      document.addEventListener('keydown', function(e){
+        if (e.key === "Escape") {
+          document.querySelectorAll('.modal.show').forEach(m => {
+            const bs = bootstrap.Modal.getInstance(m);
+            if (bs) bs.hide();
+          });
+        }
+      });
+    </script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("YOUR_USER_ID"); // replace with your EmailJS user ID
+   })();
+
+   document.querySelector('form').addEventListener('submit', function(event) {
+       event.preventDefault();
+       emailjs.sendForm('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID', this)
+           .then(function(){ alert('Message sent!'); }, 
+                 function(error){ alert('Failed: '+error); });
+   });
+</script>
+
+    <?php
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $mobile = $_POST['mobile'];
+    $message = $_POST['message'];
+
+    $to = "your-email@example.com"; // Your email
+    $subject = "New Contact Form Submission";
+    $body = "Name: $name\nEmail: $email\nMobile: $mobile\nMessage: $message";
+    $headers = "From: $email";
+
+    if(mail($to, $subject, $body, $headers)){
+        echo "Message sent successfully!";
+    } else{
+        echo "Failed to send message.";
+    }
+}
+?>
+
+  </body>
+</html>
